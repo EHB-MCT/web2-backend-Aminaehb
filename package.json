@@ -1,0 +1,19 @@
+{
+  "name": "web2-backend-aminaehb",
+  "version": "1.0.0",
+  "description": "backend ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EHB-MCT/web2-backend-Aminaehb.git"
+  },
+  "author": "Amina Amzou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EHB-MCT/web2-backend-Aminaehb/issues"
+  },
+  "homepage": "https://github.com/EHB-MCT/web2-backend-Aminaehb#readme"
+}
