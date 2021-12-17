@@ -21,6 +21,9 @@ app.get('/data', (req, res) => { //waiting for a get request when we enter a url
     res.send(Data); //send back data --> localhost:3000/data
 })
 
+app.use(express.static('public')) //express nees to use these things
+
+
 //CREATE NEW ROUTE
 // POST method route
 app.post('/', function (req, res) {
