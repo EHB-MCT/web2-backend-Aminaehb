@@ -2,10 +2,9 @@ const express = require('express') //install package express
 const app = express() //express allows to use one var = app + express fun
 const port = 3000
 const { MongoClient } = require("mongodb");
-
-
 const uri = "mongodb+srv://admin:admin@cluster0.mx0sa.mongodb.net/course_project?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
+const cors = require('cors');
 
 
 //https://docs.mongodb.com/drivers/node/current/quick-start/
@@ -38,7 +37,7 @@ app.post('/', function (req, res) {
 })
 
 app.listen(port, () => { //start server on port & do something when its done
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Listening to port at http://localhost:${port}`)
 })
 
 
