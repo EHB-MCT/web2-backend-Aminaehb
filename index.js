@@ -1,15 +1,15 @@
 //Hello World example from: https://expressjs.com/fr/starter/hello-world.html
 
-const express = require('express')
-const app = express()
+const express = require('express') //install package express
+const app = express() //express allows to use one var = app + express fun
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+app.get('/', (req, res) => { //waiting for a get request when we enter a url
+  res.send('Hello Amina!')
 })
 
-app.listen(port, () => {
+app.listen(port, () => { //start server on port & do something when its done
   console.log(`Example app listening at http://localhost:${port}`)
 })
-//run the app = nodemon index.js
+//run the server = nodemon index.js
 
