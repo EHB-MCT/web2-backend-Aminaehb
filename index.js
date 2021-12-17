@@ -11,6 +11,9 @@ const client = new MongoClient(uri);
 const cors = require('cors'); 
 app.use(cors());
 
+//bodyparser = request bodies in a middleware 
+const bodyParser = require('body-parser');
+
 app.use(express.static('public')) //express nees to use these things
 // instead of localhost:3000/data =  localhost:3000/info.html
 
@@ -35,10 +38,7 @@ app.get('/data', (req, res) => { //waiting for a get request when we enter a url
 //CREATE NEW ROUTE
 // POST method route
 app.post('/saveData', function (req, res) {
-    
- 
-    
-    console.log(req.body)//body paramater of req
+    console.log(req.body)//body paramater of req --> by adding it in postman
 
     res.send('Data received')
 
