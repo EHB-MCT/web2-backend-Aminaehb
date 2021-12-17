@@ -27,8 +27,6 @@ app.post('/', function (req, res) {
     res.send('POST request to the homepage')
 })
 
-
-
 app.listen(port, () => { //start server on port & do something when its done
     console.log(`Example app listening at http://localhost:${port}`)
 })
