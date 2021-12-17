@@ -1,21 +1,26 @@
 const express = require('express') //install package express
 const app = express() //express allows to use one var = app + express fun
-const port = 3000 
+const port = 3000
 
 //database from mongodb
-const { MongoClient } = require("mongodb");
+const {
+    MongoClient
+} = require("mongodb");
 const uri = "mongodb+srv://admin:admin@cluster0.mx0sa.mongodb.net/course_project?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 
 //middelware --> data transfomratie 
-const cors = require('cors'); 
+const cors = require('cors');
 app.use(cors());
 
 //bodyparser = request bodies in a middleware 
 const bodyParser = require('body-parser');
+app.use(bodyParser.json()); //every body is converted to json
 
 app.use(express.static('public')) //express nees to use these things
 // instead of localhost:3000/data =  localhost:3000/info.html
+
+
 
 //ROUTE waits for local root= localhost3000 
 
@@ -23,7 +28,7 @@ app.use(express.static('public')) //express nees to use these things
 app.get('/', (req, res) => { //waiting for a get request when we enter a url
     console.log('Local root called!') // refresh page to see it being called
     //res.send('Hello Amina!') // req send to server with res
-    res.status(300).redirect('/info.html'); 
+    res.status(300).redirect('/info.html');
 })
 
 //GET ROUTE --> send data
@@ -38,10 +43,10 @@ app.get('/data', (req, res) => { //waiting for a get request when we enter a url
 //CREATE NEW ROUTE
 // POST method route
 app.post('/saveData', function (req, res) {
-    console.log(req.body)//body paramater of req --> by adding it in postman
+    console.log(req.body) //body paramater of req --> by adding it in postman
 
-    res.send('Data received')
-
+   // res.send(`Data received`) //json code from postman --> sended to vsc 
+    res.send(`Data received with id: ${req.body.id}`) //code seen on postman
 
 })
 
