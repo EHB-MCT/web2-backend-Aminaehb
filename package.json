@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/EHB-MCT/web2-backend-Aminaehb/issues"
   },
-  "homepage": "https://github.com/EHB-MCT/web2-backend-Aminaehb#readme"
+  "homepage": "https://github.com/EHB-MCT/web2-backend-Aminaehb#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
