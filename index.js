@@ -11,5 +11,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
-//run the app = node index.js
+//run the app = nodemon index.js
 
