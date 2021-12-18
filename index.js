@@ -1,6 +1,7 @@
 const express = require('express') //install package express
 const app = express() //express allows to use one var = app + express fun
 const port = 3000
+const fs = require('fs/promises') // file server module (give the images /json file back)
 
 //database from mongodb
 const {
@@ -28,15 +29,14 @@ app.get('/', (req, res) => { //waiting for a get request when we enter a url
     //res.send('Hello Amina!') // req send to server with res
     res.status(300).redirect('/info.html');
 })
+
 //Return all images from db
 app.get('/images', async (req, res) => {
     //Read the file
     try { //async function (await is used)
-        await client.connect(); //connect to the database
-        const db = client.db("course_project").collection("images"); //var connect
-        const data = await collection.find({}).toArray(); //await to find the file
 
-         //if it succeeds --> send back the file
+        let data = await fs.readFile('data/images.json');
+        //if it succeeds --> send back the file
         console.log(data);
         res.status(200).send(data);
 
