@@ -2,8 +2,9 @@ const express = require('express') //install package express
 const app = express() //express allows to use one var = app + express fun
 const port = process.env.PORT || 3000 //tells us which port can be used in the backend
 //console.log(process.env.TEST); //startup server = log a url
-const fs = require('fs/promises') // file server module (give the images /json file back)
+//const fs = require('fs/promises') // file server module (give the images /json file back)
 
+const config = require('./config.json'); //connect to the db
 //database from mongodb
 const {
     MongoClient,
@@ -11,11 +12,7 @@ const {
 } = require('mongodb');
 require("dotenv").config(); //load a dotenv in our documentation
 const uri = "mongodb+srv://admin:admin@cluster0.mx0sa.mongodb.net/backend?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
+const client = new MongoClient(config.finaleUrl) 
 
 
 //middelware --> data transfomratie 
@@ -65,10 +62,6 @@ app.get('/photo', async (req, res) => { //http://localhost:3000/photo
 
 // POST method route --> Save an image
 app.post('/savePhoto', async (req, res) => { //http://localhost:3000/savePhoto
-    //console.log(req.body) //body paramater of req --> by adding it in postman
-    // res.send(`Data received`) //json code from postman --> sended to vsc 
-    //res.send(`Data received with id: ${req.body.id}`) //code seen on postman
-
     if (!req.body.id || !req.body.filename || !req.body.url) {
         res.status(400).send('Bad request: missing filename or url');
         return; //return to the function
@@ -129,3 +122,9 @@ app.listen(port, () => { //start server on port & do something when its done
 //})
 
 //https://web2-backend-amina.herokuapp.com/
+
+
+//To see if post method works
+// console.log(req.body) //body paramater of req --> by adding it in postman
+    // res.send(`Data received`) //json code from postman --> sended to vsc 
+    //res.send(`Data received with id: ${req.body.id}`) //code seen on postman
