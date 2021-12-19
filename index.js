@@ -5,7 +5,8 @@ const fs = require('fs/promises') // file server module (give the images /json f
 
 //database from mongodb
 const {
-    MongoClient
+    MongoClient,
+    ObjectId
 } = require('mongodb');
 require("dotenv").config();
 const uri = "mongodb+srv://admin:admin@cluster0.mx0sa.mongodb.net/backend?retryWrites=true&w=majority";
@@ -13,7 +14,6 @@ const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
-
 
 
 //middelware --> data transfomratie 
@@ -41,20 +41,24 @@ app.get('/photo', async (req, res) => {
     //Read the file
     try { //async function (await is used)
         //let data = await fs.readFile('data/photo.json'); //= it worked
+        client.connect(async err => {
+            const collection = client.db("backend").collection("images");
 
-        const db = client.db("backend"); // Use the searchCriteria "web2CP"
-        const collection = db.collection("images");
-        const data = await collection.find({}).toArray(); //await to find the file
-        //if it succeeds --> send back data
-        console.log(data);
-        res.status(200).send(data);
+            const data = await collection.find({}).toArray();
 
+            client.close();
+            //if it succeeds --> send back data
+            console.log(data);
+            res.status(200).send(data);
+        });
     } catch (error) { //catch an error
         res.status(500).send('File could not be read! Try again later...')
         console.log(error.stack);
     } finally {
         await client.close();
     }
+
+
 
 });
 
