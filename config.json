@@ -1,0 +1,7 @@
+{
+    "baseUrl": "mongodb+srv://admin:<password>@cluster0.mx0sa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "usename": "admin",
+    "password": "admin",
+    "database": "backend",
+    "finaleUrl": "mongodb+srv://admin:admin@cluster0.mx0sa.mongodb.net/backend?retryWrites=true&w=majority"
+}
