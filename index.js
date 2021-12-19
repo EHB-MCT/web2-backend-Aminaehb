@@ -1,7 +1,7 @@
 const express = require('express') //install package express
 const app = express() //express allows to use one var = app + express fun
 const port = 3000
-//const fs = require('fs/promises') // file server module (give the images /json file back)
+const fs = require('fs/promises') // file server module (give the images /json file back)
 
 //database from mongodb
 const {
@@ -31,14 +31,12 @@ app.get('/', (req, res) => { //waiting for a get request when we enter a url
 })
 
 //Return all images from db
-app.get('/', async (req, res) => {
+app.get('/images', async (req, res) => {
     //Read the file
     try { //async function (await is used)
-        //let data = await fs.readFile('data/images.json'); = it worked
+        let data = await fs.readFile('data/images.json'); //= it worked
 
-        await client.connect(); //connect to the database
-        const db = client.db("course_project").collection("images"); //var connect
-        const data = await collection.find({}).toArray(); //await to find the file
+    
         //if it succeeds --> send back data
         console.log(data);
         res.status(200).send(data);
@@ -63,17 +61,18 @@ app.post('/images', function (req, res) { //http://localhost:3000/images
 
 })
 
+
+
+
 app.listen(port, () => { //start server on port & do something when its done
     console.log(`Listening to port at http://localhost:${port}`)
 })
 
 
 
-
+//EXTRA info:
 //run the server = nodemon index.js
-// POSTMan to test the ROUTS
-
-
+// POSTMAN to test the ROUTS
 
 //GET ROUTE --> send data
 //app.get('/data', (req, res) => { //waiting for a get request when we enter a url
