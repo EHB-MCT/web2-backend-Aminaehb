@@ -61,7 +61,7 @@ app.get('/photo', async (req, res) => { //http://localhost:3000/photo
 
 
 // POST method route --> Save an image
-app.post('/savePhoto', async (req, res) => { //http://localhost:3000/savePhoto
+app.post('/photo', async (req, res) => { //http://localhost:3000/savePhoto
     if (!req.body.filename || !req.body.url) {
         res.status(400).send('Bad request: missing filename or url');
         return; //return to the function
@@ -98,9 +98,6 @@ app.post('/savePhoto', async (req, res) => { //http://localhost:3000/savePhoto
     }
 
 })
-
-
-
 
 
 app.listen(PORT, () => { //start server on port & do something when its done
