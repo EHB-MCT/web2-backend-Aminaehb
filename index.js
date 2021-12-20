@@ -62,7 +62,7 @@ app.get('/photo', async (req, res) => { //http://localhost:3000/photo
 
 // POST method route --> Save an image
 app.post('/savePhoto', async (req, res) => { //http://localhost:3000/savePhoto
-    if (!req.body.id || !req.body.filename || !req.body.url) {
+    if (!req.body.filename || !req.body.url) {
         res.status(400).send('Bad request: missing filename or url');
         return; //return to the function
     }
@@ -72,7 +72,7 @@ app.post('/savePhoto', async (req, res) => { //http://localhost:3000/savePhoto
             const collection = client.db("backend").collection("images");
             //const data = await collection.find({}).toArray();
 
-            const bg = await collection.findOne({
+            const bg = await collection.insertOne({
                 filename: req.body.filename,
                 url: req.body.url
             });
@@ -81,13 +81,14 @@ app.post('/savePhoto', async (req, res) => { //http://localhost:3000/savePhoto
         });
 
         let photo = { // Create the new photo object
+            _id: req.body._id,
             filename: req.body.filename,
             url: req.body.url,
         }
 
         //if it succeeds --> send back data
         console.log(photo);
-        res.status(201).send(photo);
+        res.status(200).send(photo);
 
     } catch (error) { //catch an error
         res.status(500).send('File could not be read! Try again later...')
