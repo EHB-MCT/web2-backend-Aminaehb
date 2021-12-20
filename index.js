@@ -98,45 +98,6 @@ app.post('/savePhoto', async (req, res) => { //http://localhost:3000/savePhoto
 
 })
 
-// PUT method route --> update an image
-app.put('/updatePhoto', async (req, res) => { //http://localhost:3000/updatePhoto
-    //Check for body data
-    if (!req.body.id || !req.body.filename || !req.body.url) {
-        res.status(400).send('Bad request: missing filename or url');
-        return; //return to the function
-    }
-    try { //async function (await is used)
-    
-        client.connect(async err => {
-            const collection = client.db("backend").collection("images");
-            //const data = await collection.find({}).toArray();
-
-            const bg = await collection.findOne({
-                filename: req.body.filename,
-                url: req.body.url
-            });
-
-            client.close();
-        });
-
-        let photo = { // Create the new photo object
-            filename: req.body.filename,
-            url: req.body.url
-        }
-
-        //if it succeeds --> send back data
-        console.log(photo);
-        res.status(201).send(photo);
-
-    } catch (error) { //catch an error
-        res.status(500).send('File could not be read! Try again later...')
-        console.log(error.stack);
-    } finally {
-        await client.close();
-    }
-})
-
-
 
 
 
