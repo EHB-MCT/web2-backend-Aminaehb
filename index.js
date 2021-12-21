@@ -20,10 +20,10 @@ const cors = require('cors');
 app.use(cors());
 
 //bodyparser = request bodies in a middleware 
-const bodyParser = require('body-parser');
-app.use(bodyParser.json()); //every body is converted to json
+const bodyParser = require('body-parser'); //every body form is converted to json
+app.use(bodyParser.json()); 
 
-app.use(express.static('public')) //express nees to use these things
+app.use(express.static('public')) //express nees to use these things like public folder
 // instead of localhost:3000/data =  localhost:3000/info.html
 
 //ROUTE waits for local root= localhost3000 
@@ -35,6 +35,7 @@ app.get('/', (req, res) => { //waiting for a get request when we enter a url
     res.status(300).redirect('/info.html');
 })
 
+//https://web2-backend-amina.herokuapp.com/photo
 //Return all images from db
 app.get('/photo', async (req, res) => { //http://localhost:3000/photo
     //Read the file
@@ -59,7 +60,7 @@ app.get('/photo', async (req, res) => { //http://localhost:3000/photo
 
 })
 
-
+//https://web2-backend-amina.herokuapp.com/savePhoto
 // POST method route --> Save an image
 app.post('/savePhoto', async (req, res) => { //http://localhost:3000/savePhoto
     if (!req.body.filename || !req.body.url) {
@@ -110,20 +111,6 @@ app.listen(PORT, () => { //start server on port & do something when its done
 //EXTRA info:
 //run the server = nodemon index.js
 // POSTMAN to test the ROUTS
-
-//GET ROUTE --> send data
-//app.get('/data', (req, res) => { //waiting for a get request when we enter a url
-//let Data = { //object with details
-// name: 'Amina',
-//  age: 19
-// }
-// res.send(Data); //send back data --> localhost:3000/data
-//})
-
 //https://web2-backend-amina.herokuapp.com/info.html
+//package.json add in script "start" = tell Heruko by default going to run npm start by the command = node index.js
 
-
-//To see if post method works
-// console.log(req.body) //body paramater of req --> by adding it in postman
-// res.send(`Data received`) //json code from postman --> sended to vsc 
-//res.send(`Data received with id: ${req.body.id}`) //code seen on postman
